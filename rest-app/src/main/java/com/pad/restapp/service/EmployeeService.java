@@ -4,6 +4,7 @@ package com.pad.restapp.service;
 import com.pad.restapp.domain.model.Employee;
 import com.pad.restapp.infrastructure.persistence.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,8 +37,13 @@ public class EmployeeService {
     }
 
     public void updateEmployee(Employee employee) {
-        employeeRepository.save(employee)
+        employeeRepository.save(employee);
     }
+
+    public boolean employeeExists(Employee e) {
+        return employeeRepository.exists(Example.of(e));
+    }
+
 
 
 }
